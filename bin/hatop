@@ -1928,6 +1928,10 @@ def mainloop(screen, interval):
             c = chr(c)
             if c in 'qQHh?12345':
                 switch_mode = True
+            if c in 'rR':
+                screen.clear()
+                update_display = True
+                continue
 
         if switch_mode:
             switch_mode = False

@@ -1898,13 +1898,12 @@ def mainloop(screen, interval):
                 curses.ascii.CR):
                 if screen.searchstring == "" and len(screen.searchstringprev) > 0:
                     screen.searchstring = screen.searchstringprev
-                for i in range(screen.vpos + 1, len(screen.lines)):
-                    # from pudb import set_trace; set_trace()
-                    if screen.searchstring in screen.lines[i].text or (screen.lines[i].stat != None and screen.searchstring in screen.lines[i].stat['svname']):
-                        if i > screen.cmax + screen.vmin:
+                for j in range(screen.vpos + 1, len(screen.lines)):
+                    if screen.searchstring in screen.lines[j].text or (screen.lines[j].stat != None and screen.searchstring in screen.lines[j].stat['svname']):
+                        if j > screen.cmax + screen.vmin:
                             maxvmin = max(0, len(screen.lines) - screen.span - 1)
-                            screen.vmin = min (maxvmin, i - int(screen.cmax/2))
-                        screen.mvc(i - screen.vpos )
+                            screen.vmin = min (maxvmin, j - int(screen.cmax/2))
+                        screen.mvc(j - screen.vpos )
                         break
                 screen.search = False
                 screen.searchstringprev = screen.searchstring
